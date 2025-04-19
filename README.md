@@ -42,6 +42,13 @@ This is a mini-calculator built using Arduino that supports basic mathematical o
 - Jumper Wires
 
 
+##Examples
+
+![Calculator](t.jpg)
+![Example](t1.jpg)
+![Example](t2.jpg)
+![Example](t3.jpg)
+
 
 ## Code Structure
 
@@ -50,12 +57,5 @@ void loop() { ... }                    // Main program loop
 evaluate()                            // Evaluates entire expression
 processMulDiv() / processAddSub()     // Handles operator precedence
 findStart() / findEnd()               // Locates numbers within the expression
-
-##Examples
-
-![Calculator](t.jpg)
-![Example](t1.jpg)
-![Example](t2.jpg)
-![Example](t3.jpg)
 
 
