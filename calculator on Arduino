@@ -1,0 +1,106 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Keypad.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);  
+const byte ROWS = 4;
+const byte COLS = 4;
+char keys[ROWS][COLS] = {
+  {'1','2','3','+'},
+  {'4','5','6','-'},
+  {'7','8','9','*'},
+  {'C','0','=','/'}
+};
+byte rowPins[ROWS] = {2, 3, 4, 5};    
+byte colPins[COLS] = {6, 7, 8, 9};  
+
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+String expression = "";
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Calculator");
+  delay(1000);
+  lcd.clear();
+}
+
+void loop() {
+  char key = keypad.getKey();
+
+  if (key != NO_KEY) {
+    if (key == 'C') {
+      expression = "";
+      lcd.clear();
+    } else if (key == '=') {
+      double result = evaluate(expression);
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print(expression);
+      lcd.setCursor(0, 1);
+      lcd.print("= ");
+      lcd.print(result);
+      expression = String(result); 
+    } else {
+      if (expression.length() < 16) {
+        expression += key;
+        lcd.setCursor(0, 0);
+        lcd.print(expression);
+      }
+    }
+  }
+}
+
+
+double evaluate(String expr) {
+ 
+  expr = processMulDiv(expr);
+ 
+  return processAddSub(expr);
+}
+
+String processMulDiv(String expr) {
+  int i = 0;
+  while (i < expr.length()) {
+    if (expr[i] == '*' || expr[i] == '/') {
+      int leftStart = findStart(expr, i - 1);
+      int rightEnd = findEnd(expr, i + 1);
+      double left = expr.substring(leftStart, i).toFloat();
+      double right = expr.substring(i + 1, rightEnd + 1).toFloat();
+      double res = (expr[i] == '*') ? (left * right) : (left / right);
+      expr = expr.substring(0, leftStart) + String(res) + expr.substring(rightEnd + 1);
+      i = 0; 
+    } else {
+      i++;
+    }
+  }
+  return expr;
+}
+
+double processAddSub(String expr) {
+  double result = 0;
+  char lastOp = '+';
+  int i = 0;
+  while (i < expr.length()) {
+    int end = findEnd(expr, i);
+    double num = expr.substring(i, end + 1).toFloat();
+    if (lastOp == '+') result += num;
+    else if (lastOp == '-') result -= num;
+
+    i = end + 1;
+    if (i < expr.length()) lastOp = expr[i++];
+  }
+  return result;
+}
+
+int findStart(String expr, int i) {
+  while (i >= 0 && (isDigit(expr[i]) || expr[i] == '.')) i--;
+  return i + 1;
+}
+
+int findEnd(String expr, int i) {
+  while (i < expr.length() && (isDigit(expr[i]) || expr[i] == '.')) i++;
+  return i - 1;
+}
