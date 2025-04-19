@@ -9,7 +9,6 @@ This is a mini-calculator built using Arduino that supports basic mathematical o
 
 - Develop a working calculator on the Arduino platform
 - Support operator precedence for arithmetic expressions
-- Allow battery-powered standalone operation
 - Provide a user interface through LCD and Keypad
 - Dynamically evaluate user-entered expressions
 
@@ -20,12 +19,8 @@ This is a mini-calculator built using Arduino that supports basic mathematical o
 - [x] Handles operator precedence (`*` and `/` take precedence over `+` and `-`)
 - [x] Clear input functionality using the `C` button
 - [x] Displays the current expression and final result
-- [x] Supports floating-point numbers (e.g., `2.5 + 1.3`)
-- [x] Detects division by zero
 - [x] User interface via LCD and 4x4 Keypad
-- [x] Operates independently using battery power
 - [x] Modular and structured code
-- [x] Includes comments for main functions
 
 
 
@@ -34,20 +29,17 @@ This is a mini-calculator built using Arduino that supports basic mathematical o
 | Input             | Result  |
 |------------------|---------|
 | `2+3*4`          | `14`    |
-| `6+4/2*3`        | `12`    |
-| `10/0`           | `Error` |
-| `5.5+2.25`       | `7.75`  |
+| `25/5   `        | `5 `    |
 | `1+2+3+4+5`      | `15`    |
+| `5*3+2  `        | `17`    |
 
 
 ## Hardware Components
 
-- Arduino Uno or Nano
+- Arduino Uno 
 - 16x2 LCD Display (I2C interface)
 - 4x4 Matrix Keypad
 - Jumper Wires
-- Breadboard
-- Power Supply (Power Bank or 6V Battery Pack)
 
 
 
