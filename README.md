@@ -48,8 +48,8 @@ This is a mini-calculator built using Arduino that supports basic mathematical o
 ![Example](t1.jpg)
 ![Example](t2.jpg)
 ![Example](t3.jpg)
-
-
+![Example](t4.jpg)
+![Example](t5.jpg)
 ## Code Structure
 
 ```cpp
