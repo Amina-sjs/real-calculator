@@ -51,6 +51,11 @@ evaluate()                            // Evaluates entire expression
 processMulDiv() / processAddSub()     // Handles operator precedence
 findStart() / findEnd()               // Locates numbers within the expression
 
+##Examples
 
-## Examples
+![Calculator](t.jpg)
+![Example](t1.jpg)
+![Example](t2.jpg)
+![Example](t3.jpg)
+
 
