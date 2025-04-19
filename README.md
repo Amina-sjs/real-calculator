@@ -61,5 +61,4 @@ findStart() / findEnd()               // Locates numbers within the expression
 
 
 ## Examples
-![photo_5195280316728732567_y](https://github.com/user-attachments/assets/f0b2be20-7510-4b71-8ec2-ac4f65b17e3b)
 
